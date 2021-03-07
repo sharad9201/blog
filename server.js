@@ -1,5 +1,7 @@
 const express = require('express')
+
 const mongoose = require('mongoose')
+const Article = require('./models/articles')
 const articleRouter = require('./routes/articles')
 const app = express()
 
@@ -12,18 +14,8 @@ app.set('view engine','ejs')
 // excessing the database with data from the articles
 app.use(express.urlencoded({ extended:false}))
 
-app.get('/',(req,res)=>{
-    const articles = [{
-        title: 'Test Article',
-        created_at: new Date(),
-        description: 'text description'
-    },
-    {
-        title: 'Test Article2',
-        created_at: new Date(),
-        description: 'text description'
-    }]
-
+app.get('/', async(req,res)=>{
+    const articles = await Article.find() .sort({created_at:'desc'})
     res.render('articles/index',{articles: articles})
 })
 //this comes down always before others urlencoder
