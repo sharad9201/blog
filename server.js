@@ -8,7 +8,7 @@ mongoose.connect('mongodb://localhost/blog',
         )
 
 app.set('view engine','ejs')
-app.use('/articles',articleRouter)
+
 // excessing the database with data from the articles
 app.use(express.urlencoded({ extended:false}))
 
@@ -26,5 +26,6 @@ app.get('/',(req,res)=>{
 
     res.render('articles/index',{articles: articles})
 })
-
+//this comes down always before others urlencoder
+app.use('/articles',articleRouter)
 app.listen(3000)
