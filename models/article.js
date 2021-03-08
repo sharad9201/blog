@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const marked = require('marked')
 const slugify = require('slugify')
+const createDomPurifier = require('dompurify')
+const { JSDOM }
 
 const articleSchema = new mongoose.Schema({
     title:{

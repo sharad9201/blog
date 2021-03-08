@@ -27,6 +27,12 @@
                     <%= article.description %>
                 </div>
                 <a href="articles/<%- article.slug %>" class="btn btn-primary">Read more</a>
+                <!-- here you definately dont use anchor tag because every timr we use acnchor tag for delete it is called globally
+                and delete our whole database data instead use form -->
+
+                <form action="/articles/<%- article.id %>?_method=DELETE" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
             </div>
             
         </div>
